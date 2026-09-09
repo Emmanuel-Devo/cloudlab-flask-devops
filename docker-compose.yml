@@ -1,0 +1,83 @@
+services:
+
+  database:
+    image: mysql:8.0
+    container_name: cloudlab-database
+
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: devops
+
+    ports:
+      - "3306:3306"
+
+    volumes:
+      - database_storage:/var/lib/mysql
+
+    networks:
+      - application_network
+
+    restart: unless-stopped
+
+    healthcheck:
+      test:
+        [
+          "CMD",
+          "mysqladmin",
+          "ping",
+          "-h",
+          "localhost",
+          "-uroot",
+          "-proot"
+        ]
+      interval: 10s
+      timeout: 5s
+      retries: 6
+      start_period: 30s
+
+
+  web:
+    build:
+      context: .
+      dockerfile: Dockerfile
+
+    container_name: cloudlab-web
+
+    ports:
+      - "5000:5000"
+
+    environment:
+      MYSQL_HOST: database
+      MYSQL_USER: root
+      MYSQL_PASSWORD: root
+      MYSQL_DB: devops
+
+    networks:
+      - application_network
+
+    depends_on:
+      database:
+        condition: service_healthy
+
+    restart: unless-stopped
+
+    healthcheck:
+      test:
+        [
+          "CMD-SHELL",
+          "curl -f http://localhost:5000/health || exit 1"
+        ]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+      start_period: 30s
+
+
+volumes:
+  database_storage:
+
+
+networks:
+  application_network:
+    driver: bridge
+

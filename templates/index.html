@@ -1,0 +1,374 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Emmanuel | Cloud & DevOps Lab</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            min-height: 100vh;
+            font-family: Arial, Helvetica, sans-serif;
+            background: #eef2f7;
+            color: #172033;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 30px 15px;
+        }
+
+        .app-wrapper {
+            width: 100%;
+            max-width: 1000px;
+            background: #ffffff;
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 0 15px 45px rgba(23, 32, 51, 0.12);
+        }
+
+        .top-bar {
+            padding: 24px 35px;
+            background: #172033;
+            color: white;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .brand {
+            font-size: 1.25rem;
+            font-weight: bold;
+            letter-spacing: 0.5px;
+        }
+
+        .status {
+            font-size: 0.8rem;
+            padding: 7px 12px;
+            border: 1px solid #3ddc97;
+            border-radius: 20px;
+            color: #3ddc97;
+        }
+
+        .main-content {
+            display: grid;
+            grid-template-columns: 0.8fr 1.2fr;
+            min-height: 520px;
+        }
+
+        .intro {
+            padding: 50px 40px;
+            background: #f7f9fc;
+            border-right: 1px solid #e3e8ef;
+        }
+
+        .avatar {
+            width: 115px;
+            height: 115px;
+            border-radius: 14px;
+            object-fit: cover;
+            border: 5px solid white;
+            box-shadow: 0 8px 20px rgba(23, 32, 51, 0.15);
+            margin-bottom: 25px;
+        }
+
+        .intro h1 {
+            font-size: 2rem;
+            line-height: 1.2;
+            margin-bottom: 12px;
+        }
+
+        .role {
+            color: #526174;
+            font-size: 1rem;
+            margin-bottom: 30px;
+        }
+
+        .description {
+            color: #667085;
+            line-height: 1.7;
+            font-size: 0.94rem;
+        }
+
+        .tech-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-top: 25px;
+        }
+
+        .tech-list span {
+            background: #e7edf5;
+            color: #344054;
+            padding: 7px 11px;
+            border-radius: 6px;
+            font-size: 0.78rem;
+        }
+
+        .message-area {
+            padding: 45px 40px;
+        }
+
+        .section-heading {
+            margin-bottom: 25px;
+        }
+
+        .section-heading h2 {
+            font-size: 1.45rem;
+            margin-bottom: 7px;
+        }
+
+        .section-heading p {
+            color: #7b8798;
+            font-size: 0.88rem;
+        }
+
+        .message-box {
+            height: 280px;
+            overflow-y: auto;
+            border: 1px solid #e1e6ed;
+            border-radius: 10px;
+            padding: 15px;
+            background: #fafbfc;
+            margin-bottom: 20px;
+        }
+
+        .message-item {
+            background: white;
+            border: 1px solid #e6eaf0;
+            border-radius: 8px;
+            padding: 12px 14px;
+            margin-bottom: 10px;
+            color: #475467;
+            font-size: 0.9rem;
+            line-height: 1.5;
+        }
+
+        .empty-message {
+            text-align: center;
+            color: #98a2b3;
+            padding: 80px 10px;
+            font-size: 0.9rem;
+        }
+
+        #messageForm {
+            display: flex;
+            gap: 10px;
+        }
+
+        #messageInput {
+            flex: 1;
+            padding: 13px 15px;
+            border: 1px solid #d0d5dd;
+            border-radius: 8px;
+            outline: none;
+            font-size: 0.9rem;
+            color: #172033;
+        }
+
+        #messageInput:focus {
+            border-color: #667085;
+            box-shadow: 0 0 0 3px rgba(102, 112, 133, 0.1);
+        }
+
+        button {
+            border: none;
+            border-radius: 8px;
+            padding: 0 22px;
+            background: #172033;
+            color: white;
+            cursor: pointer;
+            font-weight: bold;
+            transition: 0.2s ease;
+        }
+
+        button:hover {
+            background: #2c3a52;
+            transform: translateY(-1px);
+        }
+
+        @media (max-width: 760px) {
+            .top-bar {
+                padding: 20px;
+            }
+
+            .main-content {
+                grid-template-columns: 1fr;
+            }
+
+            .intro {
+                border-right: none;
+                border-bottom: 1px solid #e3e8ef;
+                padding: 35px 25px;
+            }
+
+            .message-area {
+                padding: 35px 25px;
+            }
+
+            #messageForm {
+                flex-direction: column;
+            }
+
+            button {
+                height: 45px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="app-wrapper">
+
+        <header class="top-bar">
+            <div class="brand">EMMANUEL / CLOUD LAB</div>
+            <div class="status">● SYSTEM ONLINE</div>
+        </header>
+
+        <main class="main-content">
+
+            <section class="intro">
+
+                <img
+                    src="1.png"
+                    alt="Emmanuel profile"
+                    class="avatar"
+                >
+
+                <h1>Emmanuel</h1>
+
+                <p class="role">
+                    Cloud Engineering & DevOps Learner
+                </p>
+
+                <p class="description">
+                    Welcome to my cloud engineering practice environment.
+                    This application demonstrates how a Flask application
+                    communicates with a MySQL database while running inside
+                    a containerized environment.
+                </p>
+
+                <div class="tech-list">
+                    <span>Linux</span>
+                    <span>Docker</span>
+                    <span>Flask</span>
+                    <span>MySQL</span>
+                    <span>Git</span>
+                    <span>DevOps</span>
+                </div>
+
+            </section>
+
+            <section class="message-area">
+
+                <div class="section-heading">
+                    <h2>Message Console</h2>
+                    <p>Send a message and store it in the application database.</p>
+                </div>
+
+                <div class="message-box" id="messageContainer">
+
+                    {% if messages %}
+
+                        {% for message in messages %}
+                            <div class="message-item">
+                                {{ message[0] }}
+                            </div>
+                        {% endfor %}
+
+                    {% else %}
+
+                        <div class="empty-message" id="emptyState">
+                            No messages have been submitted yet.
+                        </div>
+
+                    {% endif %}
+
+                </div>
+
+                <form id="messageForm">
+
+                    <input
+                        type="text"
+                        id="messageInput"
+                        name="new_message"
+                        placeholder="Write something..."
+                        autocomplete="off"
+                        required
+                    >
+
+                    <button type="submit">
+                        Send
+                    </button>
+
+                </form>
+
+            </section>
+
+        </main>
+
+    </div>
+
+<script>
+    const form = document.getElementById("messageForm");
+    const input = document.getElementById("messageInput");
+    const container = document.getElementById("messageContainer");
+
+    form.addEventListener("submit", async (event) => {
+        event.preventDefault();
+
+        const message = input.value.trim();
+
+        if (message === "") {
+            alert("Please enter a message.");
+            return;
+        }
+
+        try {
+            const response = await fetch("/submit", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/x-www-form-urlencoded"
+                },
+                body: "new_message=" + encodeURIComponent(message)
+            });
+
+            const data = await response.json();
+
+            if (!response.ok) {
+                throw new Error(data.error || "Unable to save message.");
+            }
+
+            const emptyState = document.getElementById("emptyState");
+
+            if (emptyState) {
+                emptyState.remove();
+            }
+
+            const messageElement = document.createElement("div");
+            messageElement.className = "message-item";
+            messageElement.textContent = data.message;
+
+            container.appendChild(messageElement);
+
+            input.value = "";
+            input.focus();
+
+        } catch (error) {
+            console.error(error);
+            alert("Could not send the message. Check the Flask/Docker logs.");
+        }
+    });
+</script>
+
+
+</body>
+</html>
+
