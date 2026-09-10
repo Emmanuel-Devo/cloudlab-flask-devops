@@ -1,6 +1,5 @@
 pipeline {
 
-```
 agent any
 
 environment {
@@ -58,6 +57,5 @@ post {
         echo 'Deployment failed. Check the Jenkins console output.'
     }
 }
-```
 
 }
